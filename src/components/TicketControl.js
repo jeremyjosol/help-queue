@@ -13,6 +13,7 @@ class TicketControl extends React.Component {
 
   render(){
     let currentlyVisibleState = null;
+    let addTicketButton = null;
     if (this.state.formVisibleOnPage) {
       currentlyVisibleState = <NewTicketForm />
     } else {
