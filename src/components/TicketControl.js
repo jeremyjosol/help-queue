@@ -56,7 +56,9 @@ class TicketControl extends React.Component {
     let currentlyVisibleState = null;
     let buttonText = null;
     if (this.state.selectedTicket != null) {
-      currentlyVisibleState = <TicketDetail ticket = {this.state.selectedTicket} onClickingDelete = {this.handleDeletingTicket} />
+      currentlyVisibleState = <TicketDetail ticket = {this.state.selectedTicket} 
+      onClickingDelete = {this.handleDeletingTicket}
+      onClickingEdit = {this.handleEditClick} />
       buttonText = "Return to Ticket List";
     }
     else if (this.state.formVisibleOnPage) {
