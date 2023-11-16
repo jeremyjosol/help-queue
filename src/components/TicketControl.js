@@ -34,11 +34,16 @@ class TicketControl extends React.Component {
   render(){
     let currentlyVisibleState = null;
     let buttonText = null;
-    if (this.state.formVisibleOnPage) {
-      currentlyVisibleState = <NewTicketForm onNewTicketCreation={this.handleAddingNewTicketToList} />;
+    if (this.state.selectedTicket != null) {
+      currentlyVisibleState = <TicketDetail ticket = {this.state.selectedTicket} />
+      buttonText = "Return to Ticket List";
+    }
+    else if (this.state.formVisibleOnPage) {
+      currentlyVisibleState = <NewTicketForm onNewTicketCreation={this.handleAddingNewTicketToList}  />;
       buttonText = "Return to Ticket List";
     } else {
-      currentlyVisibleState = <TicketList ticketList={this.state.mainTicketList} />; 
+      currentlyVisibleState = <TicketList ticketList={this.state.mainTicketList} onTicketSelection={this.handleChangingSelectedTicket} />;
+      // Because a  will actually be clicking on the ticket in the Ticket component, we will need to pass our new handleChangingSelectedTicket method as a prop.
       buttonText = "Add Ticket";
     }
     return (
