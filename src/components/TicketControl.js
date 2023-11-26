@@ -11,7 +11,6 @@ class TicketControl extends React.Component {
     super(props);
     this.state = {
         formVisibleOnPage: false,
-        mainTicketList: [],
         selectedTicket: null,
         editing: false
       };
