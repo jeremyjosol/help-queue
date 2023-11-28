@@ -1,4 +1,5 @@
 import ticketListReducer from '../../reducers/ticket-list-reducer';
+import { formatDistanceToNow } from 'date-fns';
 
 describe('ticketListReducer', () => {
 
@@ -17,10 +18,15 @@ describe('ticketListReducer', () => {
   }
 
   let action;
+
   const ticketData = {
     names: 'Ryan & Aimen',
     location: '4b',
     issue: 'Redux action is not working correctly.',
+    timeOpen : new Date(),
+    formattedWaitTime: formatDistanceToNow(new Date(), {
+      addSuffix: true
+    }),
     id: 1
   };
 
@@ -59,6 +65,25 @@ describe('ticketListReducer', () => {
         location: '2a',
         issue: 'Reducer has side effects.',
         id: 2 
+      }
+    });
+  });
+
+  test('Should add a formatted wait time to ticket entry', () => {
+    const { names, location, issue, timeOpen, id } = ticketData;
+    action = {
+      type: c.UPDATE_TIME,
+      formattedWaitTime: '4 minutes ago',
+      id: id
+    };
+    expect(ticketListReducer({ [id] : ticketData }, action)).toEqual({
+      [id] : {
+        names: names,
+        location: location,
+        issue: issue,
+        timeOpen: timeOpen,
+        id: id,
+        formattedWaitTime: '4 minutes ago'
       }
     });
   });
