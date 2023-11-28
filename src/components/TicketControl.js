@@ -12,7 +12,7 @@ class TicketControl extends React.Component {
     super(props);
     this.state = {
         selectedTicket: null,
-        editing: false
+        editing: false,
       };
     }
 
@@ -115,7 +115,8 @@ class TicketControl extends React.Component {
 }
 
 TicketControl.propTypes = {
-  mainTicketList: PropTypes.object
+  mainTicketList: PropTypes.object,
+  formVisibleOnPage: PropTypes.bool
 };
 
 const mapStateToProps = state => {
@@ -123,13 +124,8 @@ const mapStateToProps = state => {
     mainTicketList: state.mainTicketList,
     formVisibleOnPage: state.formVisibleOnPage
   }
-}
+};
 
 TicketControl = connect(mapStateToProps)(TicketControl);
-
-TicketControl.propTypes = {
-  mainTicketList: PropTypes.object,
-  formVisibleOnPage: PropTypes.bool
-};
 
 export default TicketControl;
