@@ -9,7 +9,9 @@ const reducer = (state = {}, action) => {
         names: names,
         location: location,
         issue: issue,
-        id: id
+        id: id,
+        timeOpen: timeOpen,
+        formattedWaitTime: formattedWaitTime
       }
     });
   case c.DELETE_TICKET:
