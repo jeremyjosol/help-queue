@@ -1,3 +1,5 @@
+import * as c from './ActionTypes';
+
 export const deleteTicket = id => ({
   type: 'DELETE_TICKET',
   id
@@ -17,3 +19,9 @@ export const addTicket = (ticket) => {
     id: id
   }
 }
+
+export const updateTime = (id, formattedWaitTime) => ({
+  type: c.UPDATE_TIME,
+  id: id,
+  formattedWaitTime: formattedWaitTime
+});
