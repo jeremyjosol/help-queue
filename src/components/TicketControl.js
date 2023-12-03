@@ -51,7 +51,7 @@ function TicketControl() {
   }
 
   const handleAddingNewTicketToList = (newTicket) => {
-    const newMainTicketList = this.state.mainTicketList.concat(newTicket);
+    const newMainTicketList = mainTicketList.concat(newTicket);
     setMainTicketList(newMainTicketList);
     setFormVisibleOnPage(false)
   }
