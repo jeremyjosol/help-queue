@@ -20,9 +20,7 @@ function TicketControl() {
         const tickets = [];
         collectionSnapshot.forEach((doc) => {
             tickets.push({
-              names: doc.data().names, 
-              location: doc.data().location, 
-              issue: doc.data().issue, 
+              ... doc.data(),
               id: doc.id
             });
         });
