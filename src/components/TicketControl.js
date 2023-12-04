@@ -4,7 +4,7 @@ import TicketList from './TicketList';
 import EditTicketForm from './EditTicketForm';
 import TicketDetail from './TicketDetail';
 import db from './../firebase.js';
-import { collection, addDoc, onSnapshot } from "firebase/firestore";
+import { collection, addDoc, doc, updateDoc, onSnapshot, deleteDoc } from "firebase/firestore";
 
 function TicketControl() {
 
@@ -43,21 +43,17 @@ function TicketControl() {
     }
   }
 
-  const handleDeletingTicket = (id) => {
-    const newMainTicketList = mainTicketList.filter(ticket => ticket.id !== id);
-    setMainTicketList(newMainTicketList);
+  const handleDeletingTicket = async (id) => {
+    await deleteDoc(doc(db, "tickets", id));
     setSelectedTicket(null);
-  }
+  } 
 
   const handleEditClick = () => {
     setEditing(true);
   }
 
-  const handleEditingTicketInList = (ticketToEdit) => {
-    const editedMainTicketList = mainTicketList
-      .filter(ticket => ticket.id !== selectedTicket.id)
-      .concat(ticketToEdit);
-    setMainTicketList(editedMainTicketList);
+  const handleEditingTicketInList = async (ticketToEdit) => {
+    await updateDoc(doc(db, "tickets", ticketToEdit.id), ticketToEdit);
     setEditing(false);
     setSelectedTicket(null);
   }
