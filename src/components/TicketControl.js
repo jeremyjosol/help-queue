@@ -4,7 +4,7 @@ import TicketList from './TicketList';
 import EditTicketForm from './EditTicketForm';
 import TicketDetail from './TicketDetail';
 import db from './../firebase.js';
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, onSnapshot } from "firebase/firestore";
 
 function TicketControl() {
 
@@ -13,15 +13,17 @@ function TicketControl() {
   const [selectedTicket, setSelectedTicket] = useState(null);
   const [editing, setEditing] = useState(false);
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     formVisibleOnPage: false,
-  //     mainTicketList: [],
-  //     selectedTicket: null,
-  //     editing: false
-  //   };
-  // }
+  useEffect(() => { 
+    const unSubscribe = onSnapshot(
+      collection(db, "tickets"), 
+      (collectionSnapshot) => {
+      }, 
+      (error) => {
+      }
+    );
+
+    return () => unSubscribe();
+  }, []);
   
   const handleClick = () => {
     if (selectedTicket != null) {
